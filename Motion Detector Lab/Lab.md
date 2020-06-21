@@ -51,7 +51,7 @@ If you've never worked with a breadboard before, here are a few notes. Otherwise
 1) Plug the USB cable into the Photon board and into your computer.
 
 When done your setup should look like this:
-![Wired board for Blinky app](/Images/blinky_wired_board.jpg "Wired board for Blinky app")
+![Wired board for Blinky app](https://raw.githubusercontent.com/OrlandoIoT/2020-MotionDetectorLabMeetup/master/Motion%20Detector%20Lab/Images/blinky_wired_board.jpg "Wired board for Blinky app")
 
 You have just setup a breadboard to blink and LED. In the next section you will write the code to enable this functionality.
 
@@ -121,7 +121,7 @@ A blinking LED is cool, but it's not useful. The next few steps will have you at
 1) Take a black wire and plug it into the left pin of the sensor. Then plug the other end into the breadboard on the far-right side (it was wired up to be ground earlier).
 1) Take the data wire (the one that isn't red) and plug it into the center pin in the sensor. Plug the other end into line 17 of the breadboard (so it is connected to Pin D4 on the Photon).
 1) Take the red wire and plug it into the right side pin of the sensor and plug the other end into line 10 of the breadboard (so it is connected to the 3V pin on the Photon).
-![Wired PIR Sensor](/Images/Wired_PIR_Sensor.png "Wired PIR Sensor")
+![Wired PIR Sensor](https://raw.githubusercontent.com/OrlandoIoT/2020-MotionDetectorLabMeetup/master/Motion%20Detector%20Lab/Images/Wired_PIR_Sensor.png "Wired PIR Sensor")
 
 ### Write and Deploy your Code to use the new sensor
 
