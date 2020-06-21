@@ -40,7 +40,7 @@ If you've never worked with a breadboard before, here are a few notes. Otherwise
 - The lines in the middle are connected horizontally, with a gap in the middle
 - When plugging wires into the board we'll be taking note of their color. But the color does not have any meaning other than what we choose to give it. It's just metal on the inside.
 
-![Diagram of connected lines in a breadboard](/Images/Breadboard_lines.png "Diagram of connected lines in a breadboard")
+![Diagram of connected lines in a breadboard](https://raw.githubusercontent.com/OrlandoIoT/2020-MotionDetectorLabMeetup/master/Motion%20Detector%20Lab/Images/Breadboard_lines.png "Diagram of connected lines in a breadboard")
 
 #### Wiring your board
 
