@@ -26,17 +26,17 @@ In this section you will wire up your board and write a simple Hello World appli
 
 Particle is an IoT hardware and software company that has several IoT hardware devices on the market. Recently, they have released their Generation 3 lineup which includes the Argon Wifi-focused product. The previous Gen-2 Wifi-focused product is the Photon. 
 
-Both boards will work great for this meetup however their pinouts are different! For refrence, we will refer to the "top" of the board as the side with the USB port.
-
-#### Particle Argon
-
-- Starter Kit ($37): <https://store.particle.io/collections/wifi/products/argon-kit>
-- Pinout Diagram: <https://docs.particle.io/assets/images/argon/argon-pinout-v1.0.pdf>
+Both boards will work great for this meetup however their pinouts are different! For refrence, we will refer to the "top" of the board as the side with the USB port. In this Lab, instructions for the Photon will be followed immediately by instructions for the Argon device. Keep this in mind as you follow the lab. 
 
 #### Particle Photon
 
 - Starter Kit ($29) (No longer avialble): <https://store.particle.io/collections/wifi/products/photon-kit>
 - Pinout Diagram: <https://docs.particle.io/assets/pdfs/datasheets/photon-datasheet.pdf>
+
+#### Particle Argon
+
+- Starter Kit ($37): <https://store.particle.io/collections/wifi/products/argon-kit>
+- Pinout Diagram: <https://docs.particle.io/assets/images/argon/argon-pinout-v1.0.pdf>
 
 #### Breadboards 101
 
