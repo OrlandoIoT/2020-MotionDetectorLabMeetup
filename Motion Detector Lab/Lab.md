@@ -1,4 +1,4 @@
-# Orlando Code Camp 2020 IoT Lab - Room Light
+# Orlando IoT Lab - Room Light
 
 ## Introduction
 
@@ -8,7 +8,7 @@ You should be able to complete this during the 50 minutes alloted for the sessio
 
 ## Materials
 
-- 1 Particle Photon Development Board
+- 1 Particle Photon Development Board or Particle Argon Development Board
 - 1 220 Ohm resistor
 - 1 PIR Sensor
 - 3 Wires (1 Red, 2 Black, and 1 Other)
@@ -16,20 +16,27 @@ You should be able to complete this during the 50 minutes alloted for the sessio
 - 1 LED
 - 1 USB Cable
 
-If you are missing any of these materials, ask one of the organizers for the missing component(s).
-
 ## Part 1: Hello World
 
 In this section you will wire up your board and write a simple Hello World application, known as Blinky in the embedded space.
 
 ### Setting up your board
 
-#### Particle Photon 101
+#### Particle Photon vs Argon 101
 
-For this lab we will be using a Particle Photon development board. Here are a few notes about it.
+Particle is an IoT hardware and software company that has several IoT hardware devices on the market. Recently, they have released their Generation 3 lineup which includes the Argon Wifi-focused product. The previous Gen-2 Wifi-focused product is the Photon. 
 
-- For this lab, we will be referring to the top as the side with the USB port on it.
-- A cheap kit on their website is $29: <https://store.particle.io/collections/wifi/products/photon-kit>
+Both boards will work great for this meetup however their pinouts are different! For refrence, we will refer to the "top" of the board as the side with the USB port.
+
+#### Particle Argon
+
+- Starter Kit ($37): <https://store.particle.io/collections/wifi/products/argon-kit>
+- Pinout Diagram: <https://docs.particle.io/assets/images/argon/argon-pinout-v1.0.pdf>
+
+#### Particle Photon
+
+- Starter Kit ($29) (No longer avialble): <https://store.particle.io/collections/wifi/products/photon-kit>
+- Pinout Diagram: <https://docs.particle.io/assets/pdfs/datasheets/photon-datasheet.pdf>
 
 #### Breadboards 101
 
@@ -42,7 +49,7 @@ If you've never worked with a breadboard before, here are a few notes. Otherwise
 
 ![Diagram of connected lines in a breadboard](https://raw.githubusercontent.com/OrlandoIoT/2020-MotionDetectorLabMeetup/master/Motion%20Detector%20Lab/Images/Breadboard_lines.png "Diagram of connected lines in a breadboard")
 
-#### Wiring your board
+#### Wiring your Particle Photon board
 
 1) Take your Particle Photon and plug it into the breadboard somewhere in the middle with the top-most pin (the one labeled 3V3) on line 10 of the breadboard.
 1) Plug the resistor into a breadboard spot on the same line as D0 (the bottom-right pin on the Photon board). Place the other end of the resistor somewhere on line 27.
@@ -55,15 +62,38 @@ When done your setup should look like this:
 
 You have just setup a breadboard to blink and LED. In the next section you will write the code to enable this functionality.
 
+#### Wiring your Particle Argon board
+
+1) Take your Particle Argon and plug it into the breadboard somewhere in the middle with the top-most pin (the one labeled RST) on line 5 of the breadboard.
+1) Plug the resistor into a breadboard spot on the same line as D0 (the bottom-right pin on the Argon board). Place the other end of the resistor somewhere on line 27.
+1) Plug in the LED  into the board. There are 2 pins coming out of it. Put the longer-length side into line 27 and the other end onto the far right of the board (in the section labeled -).
+1) Take a black wire and connect one side to line 8, next to the pin labeled GND on the Argon (this is ground). Plug the other side into the top of the far-right of the bread board, the side labeled -.
+1) Plug the USB cable into the Photon board and into your computer.
+
+You have just setup a breadboard to blink and LED. In the next section you will write the code to enable this functionality.
+
 ### Claim the Particle Photon board as yours
 
-1) Make sure the Photon is connected to your computer.
+1) Make sure the board is connected to your computer.
 1) On your mobile device, open the Particle app.
 1) Click the Plus icon in the bottom right, then select the option to add a Photon.
-1) On the Photon board, hold down the `Reset` button for 3 seconds and then release it. The built in LED should blink blue.
+1) On the board, hold down the `Reset` button for 3 seconds and then release it. The built in LED should blink blue rapidly.
 1) Click `Ready` in the Particle app to search for your Photon.
 1) When your Photon is found select it. You will get a popup asking to change the owner. Select the `Change Owner` option.
 1) On the next screen, enter the Wi-Fi credentials to connect the Photon to the network.
+
+- Note: If you get an error saying the board could not connect to the network, it may have still worked. Move on to the next step. If the board does not show up in your list of devices come back to this step and run through it again.
+
+### Claim the Particle Argon board as yours
+
+1) Make sure the board is connected to your computer.
+1) Ensure the wifi antenna is connected to the board. 
+1) On the board, hold down the `Reset` button for 3 seconds and then release it. The built in LED should blink blue rapidly.
+1) On your mobile device, open the Particle app.
+1) Click the Plus icon in the bottom right, then select the option to add an Argon/Boron/Xenon.
+1) Use your device's camera to scan the barcode on the Argon board. 
+1) - The app will attempt to connect to the Argon board va Bluetooth, if necessary, update the firmware of the Argon board.
+1) On the next screen, enter the Wi-Fi credentials to connect the Argon to the network and name it!
 
 - Note: If you get an error saying the board could not connect to the network, it may have still worked. Move on to the next step. If the board does not show up in your list of devices come back to this step and run through it again.
 
@@ -75,8 +105,8 @@ You have just setup a breadboard to blink and LED. In the next section you will 
 
 ### Write and Deploy your Code
 
-1) Create a new App by typing the title `CodeCamp2020` into the `Current App` text box.
-2) Type the following code into the `codecamp2020.ino` text editor.
+1) Create a new App by typing the title `HackalongMotionDetector` into the `Current App` text box.
+2) Type the following code into the `hackalongmotiondetector.ino` text editor.
 
 ```c
 int ledPin = D0;
@@ -119,13 +149,14 @@ A blinking LED is cool, but it's not useful. The next few steps will have you at
 1) Take the PIR Sensor and hold it so you are looking at the side with the 3 pins facing you.
 1) The left side is ground, middle is data, and right side is power.
 1) Take a black wire and plug it into the left pin of the sensor. Then plug the other end into the breadboard on the far-right side (it was wired up to be ground earlier).
-1) Take the data wire (the one that isn't red) and plug it into the center pin in the sensor. Plug the other end into line 17 of the breadboard (so it is connected to Pin D4 on the Photon).
-1) Take the red wire and plug it into the right side pin of the sensor and plug the other end into line 10 of the breadboard (so it is connected to the 3V pin on the Photon).
+1) Take the data wire (the one that isn't red) and plug it into the center pin in the sensor. Plug the other end into the breadboard next to the D4 pin (line 17 on Photon setup, line 13 of the Argon setup).
+1) Take the red wire and plug it into the right side pin of the sensor and plug the other end into the breadboard next to the 3.3V pin (line 10 on Photon setup, line 6 on Argon setup)
+
 ![Wired PIR Sensor](https://raw.githubusercontent.com/OrlandoIoT/2020-MotionDetectorLabMeetup/master/Motion%20Detector%20Lab/Images/Wired_PIR_Sensor.png "Wired PIR Sensor")
 
 ### Write and Deploy your Code to use the new sensor
 
-1) Change the code in your `codecamp2020.ino` file in the web text editor to match the code below, then deploy it to your Photon.
+1) Change the code in your `hackalongmotiondetector.ino` file in the web text editor to match the code below, then deploy it to your Photon.
 
 ```c
 int ledPin = D0;
