@@ -282,7 +282,7 @@ int setLedForcedValue(String tag) {
 1) In the this you will use Publish and Subscibe to connect particle devices together.
 1) Modify your code to match the below code, and deploy it to your Photon board.
 
-'''c
+```c
 int ledPin = D0;
 int pirPin = D4;
 int knownPirState = LOW;
@@ -331,4 +331,4 @@ void ledHandler(const char *event, const char *data)
 {
     blinkLed();
 }
-'''
+```
