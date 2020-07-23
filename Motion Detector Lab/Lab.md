@@ -277,3 +277,58 @@ int setLedForcedValue(String tag) {
 1) Enter the text `true` into the `Argument` text box for the function and click `Call`.
 1) Notice your LED is now always on, but will still blink once when the PIR sensor detects movement or lack of movement.
 
+## Part 4: Send an event when the PIR state changes
+
+1) In the this you will use Publish and Subscibe to connect particle devices together.
+1) Modify your code to match the below code, and deploy it to your Photon board.
+
+'''c
+int ledPin = D0;
+int pirPin = D4;
+int knownPirState = LOW;
+bool ledForcedOn = false;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  pinMode(pirPin, INPUT);
+
+  Particle.function("setLedForcedValue", setLedForcedValue);
+  Particle.subscribe("orlandoIOT/LED", ledHandler, ALL_DEVICES);
+}
+
+void setLedOn(){
+  digitalWrite(ledPin, HIGH);
+}
+
+void setLedOff(){
+  digitalWrite(ledPin, LOW);
+}
+
+void blinkLed(){
+  setLedOn();
+  delay(250);
+
+  setLedOff();
+  delay(250);
+}
+
+void loop(){
+  int currentState = digitalRead(pirPin);
+
+  if(knownPirState != currentState)
+  {
+    Particle.publish("orlandoIOT/LED", PUBLIC);
+  }
+}
+
+// Cloud functions must return int and take one String
+int setLedForcedValue(String tag) {
+  ledForcedOn = tag == "true";
+  return 0;
+}
+
+void ledHandler(const char *event, const char *data)
+{
+    blinkLed();
+}
+'''
