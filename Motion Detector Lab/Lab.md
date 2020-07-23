@@ -317,6 +317,7 @@ void loop(){
 
   if(knownPirState != currentState)
   {
+    knownPirState = currentState;
     Particle.publish("orlandoIOT/LED", PUBLIC);
   }
 }
